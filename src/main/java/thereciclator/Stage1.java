@@ -2,20 +2,33 @@ package thereciclator;
 
 import java.util.concurrent.CompletableFuture;
 import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
+import javafx.scene.image.ImageView;
 
 public class Stage1 {
-    private static final int fps = 60;  // Target FPS
+    // Get elements
+    @FXML
+    private ImageView playerSprite;
     
     @FXML
+    private Pane playerContainer;
+    
+    // Runs when loaded
+    @FXML
     private void initialize() {
-        // Runs when loaded
+        // Initializes a new player
+        Player player = new Player(playerContainer, playerSprite);
         
-        // Runs the function "loop"
+        // Runs the function "loop" in the background
         CompletableFuture<Void> loopFuture = CompletableFuture.runAsync(() -> loop());
     }
     
+    // Target FPS
+    private static final int fps = 60;
+    
     private static void loop() {
-        int frametime = (int) (1000 / fps);  // Target frametime
+        // Target frametime
+        int frametime = (int) (1000 / fps);
         
         while (true) {
             try {
