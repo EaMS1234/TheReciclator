@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
 
-public class Stage1 {
+public class Level {
     // Get elements
     @FXML
     private ImageView playerSprite;
