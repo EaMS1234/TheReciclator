@@ -7,17 +7,17 @@ import javafx.scene.image.ImageView;
 
 public class Level {
     // Get elements
-    @FXML
-    private ImageView playerSprite;
+    @FXML private ImageView playerSprite;
+    @FXML private Pane playerContainer;
     
-    @FXML
-    private Pane playerContainer;
+    // Creates player object
+    @FXML static Player player;
     
     // Runs when loaded
     @FXML
     private void initialize() {
         // Initializes a new player
-        Player player = new Player(playerContainer, playerSprite);
+        this.player = new Player(playerContainer, playerSprite);
         
         // Runs the function "loop" in the background
         CompletableFuture<Void> loopFuture = CompletableFuture.runAsync(() -> loop());
@@ -35,7 +35,8 @@ public class Level {
                 // Current time at the beginning of the frame
                 long startTime = System.currentTimeMillis();
                 
-                // Game loop code goes here
+                // Game loop code goes here 
+                player.input();
                 
                 // Elapsed  time at the end of the frame.
                 long elapsedTime = System.currentTimeMillis() - startTime;

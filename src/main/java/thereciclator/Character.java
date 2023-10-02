@@ -19,8 +19,12 @@ public class Character {
     }
     
     // Moves the character around
-    private void move(Vector2 vector) {
+    public void move(Vector2 vector) {
         this.x += vector.x;
         this.y += vector.y;
+        
+        // Changes onscreen position of element
+        container.setLayoutX(x);
+        container.setLayoutY(y);
     }
 }
