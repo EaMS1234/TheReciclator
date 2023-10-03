@@ -7,11 +7,14 @@ import javafx.scene.image.ImageView;
 
 public class Level {
     // Get elements
-    @FXML private ImageView playerSprite;
-    @FXML private Pane playerContainer;
+    @FXML
+    private ImageView playerSprite;
+    @FXML
+    private Pane playerContainer;
     
     // Creates player object
-    @FXML static Player player;
+    @FXML
+    static Player player;
     
     // Runs when loaded
     @FXML
@@ -49,5 +52,10 @@ public class Level {
             } catch (InterruptedException ex) {
             }
         }
+    }
+    
+    @FXML
+    public void handleOnKeyPressed(){
+        System.out.println("handleOnKeyPressed");
     }
 }
