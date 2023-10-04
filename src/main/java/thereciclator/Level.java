@@ -4,8 +4,13 @@ import java.util.concurrent.CompletableFuture;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class Level {
+    // Global parameters
+    private static KeyCode key;
+    
     // Get elements
     @FXML
     private ImageView playerSprite;
@@ -24,6 +29,22 @@ public class Level {
         
         // Runs the function "loop" in the background
         CompletableFuture<Void> loopFuture = CompletableFuture.runAsync(() -> loop());
+        
+        // Make sure the player has the focus since the beginning
+        playerContainer.requestFocus();
+    }
+    
+    // Sets current keyboard input
+    @FXML
+    private void keyPress(KeyEvent event) {
+        key = event.getCode();
+        
+        System.out.println(key);
+    }
+    
+    @FXML
+    private void keyRelease() {
+        key = null;
     }
     
     // Target FPS
@@ -39,7 +60,7 @@ public class Level {
                 long startTime = System.currentTimeMillis();
                 
                 // Game loop code goes here 
-                player.input();
+                CompletableFuture<Void> input = CompletableFuture.runAsync(() -> player.input(key));
                 
                 // Elapsed  time at the end of the frame.
                 long elapsedTime = System.currentTimeMillis() - startTime;
@@ -52,10 +73,5 @@ public class Level {
             } catch (InterruptedException ex) {
             }
         }
-    }
-    
-    @FXML
-    public void handleOnKeyPressed(){
-        System.out.println("handleOnKeyPressed");
     }
 }

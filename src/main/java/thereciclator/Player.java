@@ -1,6 +1,7 @@
 package thereciclator;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 
 // Class that represents a player
@@ -9,14 +10,40 @@ public class Player extends Character {
         super(container, sprite);
     }
     
-    public void input() {
-        Vector2 velocity = new Vector2();
-       
-        // TODO: REPLACE THIS SECTION WITH AN ACTUAL KEY PRESS HANDLER
-        velocity.x = 1;
-        velocity.y = 1;
+    Vector2 velocity = new Vector2();
+    
+    public void input(KeyCode key) {
+        switch (key) {
+            case LEFT:
+                velocity.x = -1;
+                velocity.y = 0;
+                break;
+            
+            case RIGHT:
+                velocity.x = 1;
+                velocity.y = 0;
+                break;
+            
+            case UP:
+                velocity.x = 0;
+                velocity.y = -1;
+                break;
+                
+            case DOWN:
+                velocity.x = 0;
+                velocity.y = 1;
+                break;
         
+            default:
+                velocity.x = 0;
+                velocity.y = 0;
+                break;
+        }
+        
+        // Moves the player around
         velocity.normalize();
         move(velocity);
+        
+        System.out.println(velocity);
     }
 }

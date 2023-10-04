@@ -4,11 +4,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="stageContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thereciclator.Level">
+<Pane fx:id="stageContainer" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thereciclator.Level">
    <children>
-      <Pane fx:id="playerContainer" layoutX="309.0" layoutY="270.0" onKeyPressed="#handleOnKeyPressed" prefHeight="200.0" prefWidth="200.0">
+      <Pane fx:id="playerContainer" focusTraversable="true" layoutX="309.0" layoutY="270.0" onKeyPressed="#keyPress" onKeyReleased="#keyRelease" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ImageView fx:id="playerSprite" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerSprite" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
                   <Image url="@assets/buneco/buneco1.png" />
                </image>
