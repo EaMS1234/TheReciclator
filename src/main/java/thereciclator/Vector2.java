@@ -12,4 +12,15 @@ public class Vector2 {
         x = x / sqrt((x * x) + (y * y));
         y = y / sqrt((x * x) + (y * y));
     }
+    
+    // Multiplies the vector by n
+    public void multiply(int n) {
+        x = x * n;
+        y = y * n;
+    }
+    
+    @Override
+    public String toString() {
+        return "(" + x + "; " + y + ")";
+    }
 }
