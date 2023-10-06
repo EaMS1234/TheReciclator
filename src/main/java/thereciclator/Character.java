@@ -34,17 +34,22 @@ public class Character {
     public int frameSkip;
     
     public void animate(int frameCount, int animFPS, int gameFPS, String PATH) {
+        // Defines the quantity of frames to be skipped
         frameSkip = gameFPS / animFPS;
         
+        // If the animation is over, goes back to the first frame
         if (currentFrame > frameCount) {
             currentFrame = 1;
         }
         
+        // Gets the path of the current frame
         String imageFile = PATH + currentFrame + ".png";
         
+        // Updates the sprite's image
         Image newImage = new Image(getClass().getResourceAsStream(imageFile));
         sprite.setImage(newImage);
         
+        // Checks if the frame must be skipped or not
         if (currentGameFrame == frameSkip) {
             currentFrame++;
             currentGameFrame = 0;
