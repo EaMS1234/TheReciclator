@@ -9,8 +9,13 @@ public class Vector2 {
     
     // Turns the vector into an unit vector
     public void normalize() {
-        x = x / sqrt((x * x) + (y * y));
-        y = y / sqrt((x * x) + (y * y));
+        if (x == 0 && y == 0) {
+            x = 0;
+            y = 0;
+        } else {
+            x = x / sqrt((x * x) + (y * y));
+            y = y / sqrt((x * x) + (y * y));
+        }
     }
     
     // Multiplies the vector by n
