@@ -1,5 +1,6 @@
 package thereciclator;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
@@ -26,5 +27,29 @@ public class Character {
         // Changes onscreen position of element
         container.setLayoutX(x);
         container.setLayoutY(y);
+    }
+    
+    public int currentFrame = 1;
+    public int currentGameFrame = 1;
+    public int frameSkip;
+    
+    public void animate(int frameCount, int animFPS, int gameFPS, String PATH) {
+        frameSkip = gameFPS / animFPS;
+        
+        if (currentFrame > frameCount) {
+            currentFrame = 1;
+        }
+        
+        String imageFile = PATH + currentFrame + ".png";
+        
+        Image newImage = new Image(getClass().getResourceAsStream(imageFile));
+        sprite.setImage(newImage);
+        
+        if (currentGameFrame == frameSkip) {
+            currentFrame++;
+            currentGameFrame = 0;
+        } else {
+            currentGameFrame++;
+        }
     }
 }

@@ -26,6 +26,8 @@ public class Level {
     private void initialize() {
         // Initializes a new player
         this.player = new Player(playerContainer, playerSprite);
+        player.x = playerContainer.getLayoutX();
+        player.y = playerContainer.getLayoutY();
         
         // Runs the function "loop" in the background
         CompletableFuture<Void> loopFuture = CompletableFuture.runAsync(() -> loop());
@@ -61,6 +63,7 @@ public class Level {
                 
                 // Game loop code goes here 
                 CompletableFuture<Void> input = CompletableFuture.runAsync(() -> player.input(key));
+                player.animate(4, 8, fps, "/thereciclator/assets/buneco/buneco");
                 
                 // Elapsed  time at the end of the frame.
                 long elapsedTime = System.currentTimeMillis() - startTime;
