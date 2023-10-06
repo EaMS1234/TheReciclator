@@ -6,8 +6,12 @@ import javafx.scene.layout.Pane;
 
 // Class that represents a player
 public class Player extends Character {
-    public Player(Pane container, ImageView sprite) {
+    // Character base movement speed
+    public int speed = 1;
+    
+    public Player(Pane container, ImageView sprite, int speed) {
         super(container, sprite);
+        this.speed = speed;
     }
     
     Vector2 velocity = new Vector2();
@@ -42,6 +46,7 @@ public class Player extends Character {
         
         // Moves the player around
         velocity.normalize();
+        velocity.multiply(speed);
         move(velocity);
         
         System.out.println(velocity);

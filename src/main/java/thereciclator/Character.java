@@ -11,8 +11,8 @@ public class Character {
     public double y = 0;
     
     // Character elements
-    private Pane container;
-    private ImageView sprite;
+    private final Pane container;
+    private final ImageView sprite;
     
     public Character(Pane container, ImageView sprite) {
         this.container = container;

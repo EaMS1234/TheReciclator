@@ -25,7 +25,7 @@ public class Level {
     @FXML
     private void initialize() {
         // Initializes a new player
-        this.player = new Player(playerContainer, playerSprite);
+        this.player = new Player(playerContainer, playerSprite, 10);
         player.x = playerContainer.getLayoutX();
         player.y = playerContainer.getLayoutY();
         
@@ -50,7 +50,7 @@ public class Level {
     }
     
     // Target FPS
-    private static final int fps = 60;
+    private static final int fps = 30;
     
     private static void loop() {
         // Target frametime
