@@ -50,7 +50,7 @@ public class Level {
     }
     
     // Target FPS
-    private static final int fps = 30;
+    private static final int fps = 60;
     
     private static void loop() {
         // Target frametime
