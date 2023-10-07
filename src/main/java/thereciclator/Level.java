@@ -21,7 +21,7 @@ public class Level {
     @FXML static Player player;
     
     // Crteates enemy object
-    @FXML static Enemy enemy;
+    @FXML static Enemy[] enemies = new Enemy[1];
     
     // Runs when loaded
     @FXML
@@ -30,7 +30,7 @@ public class Level {
         this.player = new Player(playerContainer, playerSprite, 10);
         
         // Initializes a new enemy
-        this.enemy = new Enemy(enemyContainer, enemySprite, "inverseLine");
+        enemies[0] = new Enemy(enemyContainer, enemySprite, "sine");
         
         // Runs the function "loop" in the background
         CompletableFuture<Void> loopFuture = CompletableFuture.runAsync(() -> loop());
@@ -64,7 +64,20 @@ public class Level {
                 
                 // Game loop code goes here 
                 CompletableFuture<Void> input = CompletableFuture.runAsync(() -> player.input(key));
-                CompletableFuture<Void> pattern = CompletableFuture.runAsync(() -> enemy.pattern());
+                
+                // Roda todos os inimigos
+                for (Enemy enemy : enemies) {
+                    if (enemy.container != null) {
+                        enemy.pattern();
+                        
+                        if (enemy.deletable) {
+                            enemy.sprite.setImage(null);
+                            enemy.sprite = null;
+                            enemy.container = null;
+                        }   
+                    }
+                }
+                
                 player.animate(4, 8, fps, "/thereciclator/assets/buneco/buneco");
                 
                 // Elapsed  time at the end of the frame.

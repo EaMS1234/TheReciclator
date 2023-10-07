@@ -10,9 +10,13 @@ public class Character {
     public double x = 0;
     public double y = 0;
     
+    // Other properties
+    public boolean canBeOffScreen = false;
+    public boolean deletable = false;
+    
     // Character elements
-    private final Pane container;
-    private final ImageView sprite;
+    public Pane container;
+    public ImageView sprite;
     
     public Character(Pane container, ImageView sprite) {
         this.container = container;
@@ -24,13 +28,22 @@ public class Character {
     }
     
     // Moves the character around
-    public void move(Vector2 vector) {
+    public void move(Vector2 vector) {       
         this.x += vector.x;
         this.y += vector.y;
         
         // Changes onscreen position of element
         container.setLayoutX(x);
         container.setLayoutY(y);
+        
+        // checks if the object is out of the screen
+        if (container.getLayoutX() < 0 || container.getLayoutX() > 1280 || container.getLayoutY() < 0 || container.getLayoutY() > 720) {            
+            if (canBeOffScreen == false) {
+                if (container.getParent() != null) {
+                    deletable = true;
+                }
+            }
+        }
     }
     
     public int currentFrame = 1;
