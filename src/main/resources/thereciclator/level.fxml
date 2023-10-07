@@ -15,9 +15,9 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="enemyContainer" layoutX="1046.0" layoutY="112.0" prefHeight="200.0" prefWidth="200.0">
+      <Pane fx:id="enemyContainer" layoutX="863.0" layoutY="242.0" prefHeight="128.0" prefWidth="111.0">
          <children>
-            <ImageView fx:id="enemySprite" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="enemySprite" fitHeight="150.0" fitWidth="200.0" layoutX="-19.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/inimigos/inimigosMetal/lataSkol1.png" />
                </image>

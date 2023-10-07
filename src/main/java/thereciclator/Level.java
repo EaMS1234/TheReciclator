@@ -28,9 +28,10 @@ public class Level {
     private void initialize() {
         // Initializes a new player
         this.player = new Player(playerContainer, playerSprite, 10);
+        player.canBeOffScreen = true;
         
         // Initializes a new enemy
-        enemies[0] = new Enemy(enemyContainer, enemySprite, "sine");
+        enemies[0] = new Enemy(enemyContainer, enemySprite, "sine", "organico");
         
         // Runs the function "loop" in the background
         CompletableFuture<Void> loopFuture = CompletableFuture.runAsync(() -> loop());
@@ -65,11 +66,34 @@ public class Level {
                 // Game loop code goes here 
                 CompletableFuture<Void> input = CompletableFuture.runAsync(() -> player.input(key));
                 
-                // Roda todos os inimigos
+                // Runs for all enemy on screen
                 for (Enemy enemy : enemies) {
                     if (enemy.container != null) {
                         enemy.pattern();
                         
+                        switch (enemy.type) {
+                            case "metal":
+                                enemy.animate(2, 4, fps, "/thereciclator/assets/inimigos/inimigosMetal/lataSkol");
+                                break;
+                            
+                            case "vidro":
+                                enemy.animate(2, 4, fps, "/thereciclator/assets/inimigos/inimigosVidro/garrafaCoca");
+                                break;
+                            
+                            case "plastico":
+                                enemy.animate(2, 4, fps, "/thereciclator/assets/inimigos/inimigosPlastico/GarrafaDolly");
+                                break;
+                            
+                            case "organico":
+                                enemy.animate(2, 4, fps, "/thereciclator/assets/inimigos/inimigosOrganico/peixeOsso");
+                                break;
+                            
+                            case "papel":
+                                enemy.animate(2, 4, fps, "/thereciclator/assets/inimigos/inimigosPapel/LixoPapel");
+                                break;
+                        }
+                        
+                        // Removes the enemies container and sprite
                         if (enemy.deletable) {
                             enemy.sprite.setImage(null);
                             enemy.sprite = null;

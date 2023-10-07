@@ -6,20 +6,20 @@ import javafx.scene.layout.Pane;
 
 public class Enemy extends Character {
 
+    public String pattern;
     public String type;
     private Vector2 velocity = new Vector2();
     
-    public Enemy(Pane container, ImageView sprite, String type) {
+    public Enemy(Pane container, ImageView sprite, String pattern, String type) {
         super(container, sprite);
         
+        this.pattern = pattern;
         this.type = type;
     }
     
-    // private int frame = 0;
-    
     public void pattern() {
         // Which movement pattern will the enemy follow
-        switch(this.type) {
+        switch(this.pattern) {
             case "line":
                 velocity.y = this.x * 0.0005;
                 velocity.x = -1;
@@ -52,7 +52,5 @@ public class Enemy extends Character {
         velocity.normalize();
         velocity.multiply(5);
         this.move(velocity);
-        
-        // frame++;
     }
 }
