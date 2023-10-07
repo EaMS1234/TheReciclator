@@ -48,7 +48,5 @@ public class Player extends Character {
         velocity.normalize();
         velocity.multiply(speed);
         move(velocity);
-        
-        System.out.println(velocity);
     }
 }

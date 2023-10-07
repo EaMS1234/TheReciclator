@@ -17,6 +17,10 @@ public class Character {
     public Character(Pane container, ImageView sprite) {
         this.container = container;
         this.sprite = sprite;
+        
+        // Sets the container's position as default location
+        this.x = container.getLayoutX();
+        this.y = container.getLayoutY();
     }
     
     // Moves the character around

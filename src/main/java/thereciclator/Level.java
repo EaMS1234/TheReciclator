@@ -12,22 +12,25 @@ public class Level {
     private static KeyCode key;
     
     // Get elements
-    @FXML
-    private ImageView playerSprite;
-    @FXML
-    private Pane playerContainer;
+    @FXML private ImageView playerSprite;
+    @FXML private Pane playerContainer;
+    @FXML private ImageView enemySprite;
+    @FXML private Pane enemyContainer;
     
     // Creates player object
-    @FXML
-    static Player player;
+    @FXML static Player player;
+    
+    // Crteates enemy object
+    @FXML static Enemy enemy;
     
     // Runs when loaded
     @FXML
     private void initialize() {
         // Initializes a new player
         this.player = new Player(playerContainer, playerSprite, 10);
-        player.x = playerContainer.getLayoutX();
-        player.y = playerContainer.getLayoutY();
+        
+        // Initializes a new enemy
+        this.enemy = new Enemy(enemyContainer, enemySprite, "inverseLine");
         
         // Runs the function "loop" in the background
         CompletableFuture<Void> loopFuture = CompletableFuture.runAsync(() -> loop());
@@ -40,8 +43,6 @@ public class Level {
     @FXML
     private void keyPress(KeyEvent event) {
         key = event.getCode();
-        
-        System.out.println(key);
     }
     
     @FXML
@@ -63,6 +64,7 @@ public class Level {
                 
                 // Game loop code goes here 
                 CompletableFuture<Void> input = CompletableFuture.runAsync(() -> player.input(key));
+                CompletableFuture<Void> pattern = CompletableFuture.runAsync(() -> enemy.pattern());
                 player.animate(4, 8, fps, "/thereciclator/assets/buneco/buneco");
                 
                 // Elapsed  time at the end of the frame.
