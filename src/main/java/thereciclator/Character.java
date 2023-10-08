@@ -14,6 +14,8 @@ public class Character {
     public boolean canBeOffScreen = false;
     public boolean deletable = false;
     
+    public int hp = 10;
+    
     // Character elements
     public Pane container;
     public ImageView sprite;

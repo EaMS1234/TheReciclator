@@ -12,6 +12,8 @@ public class Player extends Character {
     public Player(Pane container, ImageView sprite, int speed) {
         super(container, sprite);
         this.speed = speed;
+        
+        this.hp = 6;
     }
     
     Vector2 velocity = new Vector2();

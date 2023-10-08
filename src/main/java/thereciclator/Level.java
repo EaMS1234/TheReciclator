@@ -16,12 +16,18 @@ public class Level {
     @FXML private Pane playerContainer;
     @FXML private ImageView enemySprite;
     @FXML private Pane enemyContainer;
+    @FXML private static ImageView life1;
+    @FXML private static ImageView life2;
+    @FXML private static ImageView life3;
     
     // Creates player object
     @FXML static Player player;
     
     // Crteates enemy object
     @FXML static Enemy[] enemies = new Enemy[1];
+    
+    // Life Counter
+    @FXML static LifeCounter life = new LifeCounter(life1, life2, life3);
     
     // Runs when loaded
     @FXML
@@ -65,6 +71,7 @@ public class Level {
                 
                 // Game loop code goes here 
                 CompletableFuture<Void> input = CompletableFuture.runAsync(() -> player.input(key));
+                CompletableFuture<Void> lifeUpdater = CompletableFuture.runAsync(() -> life.updateLife(player.hp));
                 
                 // Runs for all enemy on screen
                 for (Enemy enemy : enemies) {
