@@ -9,58 +9,62 @@ public class LifeCounter {
     private ImageView sprite2;
     private ImageView sprite3;
     
+    private Image emptyHeart;
+    private Image halfHeart;
+    private Image fullHeart;
+    
     public LifeCounter(ImageView sprite1, ImageView sprite2, ImageView sprite3) {
         this.sprite1 = sprite1;
         this.sprite2 = sprite2;
         this.sprite3 = sprite3;
+        
+        this.emptyHeart = new Image(getClass().getResourceAsStream("/thereciclator/assets/interface/vida/coracao1.png"));
+        this.halfHeart = new Image(getClass().getResourceAsStream("/thereciclator/assets/interface/vida/coracao2.png"));
+        this.fullHeart = new Image(getClass().getResourceAsStream("/thereciclator/assets/interface/vida/coracao3.png"));
     }
     
     public void updateLife(int hp) {
-        Image empty = new Image(getClass().getResourceAsStream("/thereciclator/assets/interface/vida/coracao1.png"));
-        Image half = new Image(getClass().getResourceAsStream("/thereciclator/assets/interface/vida/coracao2.png"));
-        Image full = new Image(getClass().getResourceAsStream("/thereciclator/assets/interface/vida/coracao3.png"));
-        
         switch (hp) {
             case 0:
-                sprite1.setImage(empty);
-                sprite2.setImage(empty);
-                sprite3.setImage(empty);
+                sprite1.setImage(emptyHeart);
+                sprite2.setImage(emptyHeart);
+                sprite3.setImage(emptyHeart);
                 break;
             
             case 1:
-                sprite1.setImage(half);
-                sprite2.setImage(empty);
-                sprite3.setImage(empty);
+                sprite1.setImage(halfHeart);
+                sprite2.setImage(emptyHeart);
+                sprite3.setImage(emptyHeart);
                 break;
             
             case 2:
-                sprite1.setImage(full);
-                sprite2.setImage(empty);
-                sprite3.setImage(empty);
+                sprite1.setImage(fullHeart);
+                sprite2.setImage(emptyHeart);
+                sprite3.setImage(emptyHeart);
                 break;
                 
             case 3:
-                sprite1.setImage(full);
-                sprite2.setImage(half);
-                sprite3.setImage(empty);
+                sprite1.setImage(fullHeart);
+                sprite2.setImage(halfHeart);
+                sprite3.setImage(emptyHeart);
                 break;
                 
             case 4:
-                sprite1.setImage(full);
-                sprite2.setImage(full);
-                sprite3.setImage(empty);
+                sprite1.setImage(fullHeart);
+                sprite2.setImage(fullHeart);
+                sprite3.setImage(emptyHeart);
                 break;
                 
             case 5:
-                sprite1.setImage(full);
-                sprite2.setImage(full);
-                sprite3.setImage(half);
+                sprite1.setImage(fullHeart);
+                sprite2.setImage(fullHeart);
+                sprite3.setImage(halfHeart);
                 break;
                 
             case 6:
-                sprite1.setImage(full);
-                sprite2.setImage(full);
-                sprite3.setImage(full);
+                sprite1.setImage(fullHeart);
+                sprite2.setImage(fullHeart);
+                sprite3.setImage(fullHeart);
                 break;
         }
     }

@@ -16,18 +16,18 @@ public class Level {
     @FXML private Pane playerContainer;
     @FXML private ImageView enemySprite;
     @FXML private Pane enemyContainer;
-    @FXML private static ImageView life1;
-    @FXML private static ImageView life2;
-    @FXML private static ImageView life3;
+    @FXML private ImageView life1;
+    @FXML private ImageView life2;
+    @FXML private ImageView life3;
     
     // Creates player object
-    @FXML static Player player;
+    Player player;
     
     // Crteates enemy object
-    @FXML static Enemy[] enemies = new Enemy[1];
+    Enemy[] enemies = new Enemy[1];
     
     // Life Counter
-    @FXML static LifeCounter life = new LifeCounter(life1, life2, life3);
+    LifeCounter life;
     
     // Runs when loaded
     @FXML
@@ -35,6 +35,10 @@ public class Level {
         // Initializes a new player
         this.player = new Player(playerContainer, playerSprite, 10);
         player.canBeOffScreen = true;
+        player.hp = 4;
+        
+        // Initializes a new life counter
+        this.life =  new LifeCounter(life1, life2, life3);
         
         // Initializes a new enemy
         enemies[0] = new Enemy(enemyContainer, enemySprite, "sine", "organico");
@@ -60,7 +64,7 @@ public class Level {
     // Target FPS
     private static final int fps = 60;
     
-    private static void loop() {
+    private void loop() {
         // Target frametime
         int frametime = (int) (1000 / fps);
         
@@ -71,7 +75,7 @@ public class Level {
                 
                 // Game loop code goes here 
                 CompletableFuture<Void> input = CompletableFuture.runAsync(() -> player.input(key));
-                CompletableFuture<Void> lifeUpdater = CompletableFuture.runAsync(() -> life.updateLife(player.hp));
+                life.updateLife(player.hp);
                 
                 // Runs for all enemy on screen
                 for (Enemy enemy : enemies) {
