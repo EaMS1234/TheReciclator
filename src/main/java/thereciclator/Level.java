@@ -26,6 +26,9 @@ public class Level {
     // Crteates enemy object
     Enemy[] enemies = new Enemy[1];
     
+    // Creates a new bullet
+    Bullet[] bullets = new Bullet[1];
+    
     // Life Counter
     LifeCounter life;
     
@@ -44,7 +47,7 @@ public class Level {
         enemies[0] = new Enemy(enemyContainer, enemySprite, "sine", "organico");
         
         // Runs the function "loop" in the background
-        CompletableFuture<Void> loopFuture = CompletableFuture.runAsync(() -> loop());
+        CompletableFuture.runAsync(() -> loop());
         
         // Make sure the player has the focus since the beginning
         playerContainer.requestFocus();
@@ -61,6 +64,17 @@ public class Level {
         key = null;
     }
     
+    private void shoot() {
+        int shots = bullets.length;
+        
+        if (shots <= 2) {
+            // Extends the "bullet" array
+            Bullet[] newArray = new Bullet[shots + 1];
+            System.arraycopy(bullets, 0, newArray, 0, shots);
+            bullets = newArray;
+        }
+    }
+    
     // Target FPS
     private static final int fps = 60;
     
@@ -74,7 +88,10 @@ public class Level {
                 long startTime = System.currentTimeMillis();
                 
                 // Game loop code goes here 
-                CompletableFuture<Void> input = CompletableFuture.runAsync(() -> player.input(key));
+                CompletableFuture.runAsync(() -> player.input(key));
+                CompletableFuture.runAsync(() -> {
+                    if (KeyCode.SPACE == key) shoot();
+                });
                 life.updateLife(player.hp);
                 
                 // Runs for all enemy on screen

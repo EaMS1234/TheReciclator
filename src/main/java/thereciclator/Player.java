@@ -39,7 +39,7 @@ public class Player extends Character {
                 velocity.x = 0;
                 velocity.y = 1;
                 break;
-        
+         
             default:
                 velocity.x = 0;
                 velocity.y = 0;
