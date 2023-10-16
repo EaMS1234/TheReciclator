@@ -40,10 +40,8 @@ public class Character {
         
         // checks if the object is out of the screen
         if (container.getLayoutX() < -512 || container.getLayoutX() > 1792 || container.getLayoutY() < -512 || container.getLayoutY() > 1232) {            
-            if (canBeOffScreen == false) {
-                if (container.getParent() != null) {
-                    deletable = true;
-                }
+            if (canBeOffScreen == false && container.getParent() != null) {
+                deletable = true;
             }
         }
     }

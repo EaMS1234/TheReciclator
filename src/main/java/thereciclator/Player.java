@@ -21,23 +21,23 @@ public class Player extends Character {
     public void input(KeyCode key) {
         switch (key) {
             case LEFT:
-                velocity.x = -1;
-                velocity.y = 0;
+                    velocity.x = -1;
+                    velocity.y = 0;
                 break;
             
             case RIGHT:
-                velocity.x = 1;
-                velocity.y = 0;
+                    velocity.x = 1;
+                    velocity.y = 0;
                 break;
             
             case UP:
-                velocity.x = 0;
-                velocity.y = -1;
+                    velocity.x = 0;
+                    velocity.y = -1;
                 break;
                 
             case DOWN:
-                velocity.x = 0;
-                velocity.y = 1;
+                    velocity.x = 0;
+                    velocity.y = 1;
                 break;
          
             default:

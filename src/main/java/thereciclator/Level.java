@@ -2,6 +2,7 @@ package thereciclator;
 
 import java.util.concurrent.CompletableFuture;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -12,6 +13,7 @@ public class Level {
     private static KeyCode key;
     
     // Get elements
+    @FXML private Pane stageContainer;
     @FXML private ImageView playerSprite;
     @FXML private Pane playerContainer;
     @FXML private ImageView enemySprite;
@@ -64,8 +66,9 @@ public class Level {
         key = null;
     }
     
-    private void shoot() {
+    private void shoot(String type, Pane shooter) {
         int shots = bullets.length;
+        String imagePath = "/thereciclator/assets/munições/" + type + ".png";
         
         if (shots <= 2) {
             // Extends the "bullet" array
@@ -73,6 +76,20 @@ public class Level {
             System.arraycopy(bullets, 0, newArray, 0, shots);
             bullets = newArray;
         }
+        
+        Pane bulletContainer = new Pane();
+        
+        Image bulletImage = new Image(getClass().getResourceAsStream(imagePath));
+        ImageView bulletSprite = new ImageView();
+        bulletSprite.setImage(bulletImage);
+    
+        bulletContainer.getChildren().add(bulletSprite);
+        stageContainer.getChildren().add(bulletContainer);
+        
+        bulletContainer.setLayoutX(shooter.getLayoutX());
+        bulletContainer.setLayoutY(shooter.getLayoutY());
+        
+        bullets[shots + 1] = new Bullet(bulletContainer, bulletSprite, 10);
     }
     
     // Target FPS
@@ -90,7 +107,7 @@ public class Level {
                 // Game loop code goes here 
                 CompletableFuture.runAsync(() -> player.input(key));
                 CompletableFuture.runAsync(() -> {
-                    if (KeyCode.SPACE == key) shoot();
+                    if (KeyCode.SPACE == key) shoot("municaoFeijao", playerContainer);
                 });
                 life.updateLife(player.hp);
                 
